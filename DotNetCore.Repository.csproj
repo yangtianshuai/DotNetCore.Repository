@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>YTS</Authors>
+    <Description>.NetCore持久化层解决方案</Description>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>1.0.21</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.1.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="2.1.4" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+  </ItemGroup>
+
+</Project>
