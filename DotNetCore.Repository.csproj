@@ -6,6 +6,8 @@
     <Description>.NetCore持久化层解决方案</Description>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Version>1.0.21</Version>
+    <RepositoryUrl>https://github.com/yangtianshuai/DotNetCore.Repository</RepositoryUrl>
+    <RepositoryType>github</RepositoryType>
   </PropertyGroup>
 
   <ItemGroup>

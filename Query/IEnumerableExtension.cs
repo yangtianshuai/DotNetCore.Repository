@@ -76,11 +76,6 @@ namespace DotNetCore.Repository.Query
 
         private static Type ChangeType(Type type)
         {
-            if (type.IsNullable())
-            {
-                type = Nullable.GetUnderlyingType(type);
-            }
-
             return type;
         }
     }

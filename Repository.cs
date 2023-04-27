@@ -210,12 +210,12 @@ namespace DotNetCore.Repository
             return this;
         }
 
-        public virtual bool SaveChanges()
+        public virtual bool SaveChanges(bool refresh = false)
         {
             this.tracking = true;
             if (this._repositories != null && this._repositories.Count > 0)
             {
-                return this.SaveChanges(this._repositories.Values.ToArray());
+                return this.SaveChanges(refresh, this._repositories.Values.ToArray());
             }
             else
             {
@@ -223,12 +223,12 @@ namespace DotNetCore.Repository
             }
         }
 
-        public virtual async Task<bool> SaveChangesAsync()
+        public virtual async Task<bool> SaveChangesAsync(bool refresh = false)
         {
             this.tracking = true;
             if (this._repositories != null && this._repositories.Count > 0)
             {
-                return await this.SaveChangesAsync(this._repositories.Values.ToArray());
+                return await this.SaveChangesAsync(refresh, this._repositories.Values.ToArray());
             }
             else
             {
@@ -252,7 +252,7 @@ namespace DotNetCore.Repository
             return this._dbSet;
         }
 
-        private bool SaveChanges(params IRepository[] repositories)
+        private bool SaveChanges(bool refresh = false, params IRepository[] repositories)
         {
             //using (TransactionScope scope = new TransactionScope())
             //{
@@ -280,14 +280,13 @@ namespace DotNetCore.Repository
                 if (repository.SameContext(this._context))
                 {
                     count++;
-                    continue;
                 }
-                if (repository.SaveChanges())
+                if (repository.SaveChanges(refresh))
                 {
                     count++;
                 }
             }
-            if (this.SaveChanges())
+            if (this.SaveChanges(refresh))
             {
                 count++;
             }
@@ -300,7 +299,7 @@ namespace DotNetCore.Repository
         /// </summary>
         /// <param name="repositories"></param>
         /// <returns></returns>
-        private async Task<bool> SaveChangesAsync(params IRepository[] repositories)
+        private async Task<bool> SaveChangesAsync(bool refresh = false, params IRepository[] repositories)
         {
             if (repositories == null)
             {

@@ -34,12 +34,13 @@ namespace DotNetCore.Repository
         /// <summary>
         /// 保存
         /// </summary>
+        /// <param name="refresh">是否刷新缓存</param>
         /// <returns></returns>
-        bool SaveChanges();
+        bool SaveChanges(bool refresh = false);
         /// <summary>
         /// 数据库提交
-        /// </summary>
+        /// <param name="refresh">是否刷新缓存</param>
         /// <returns></returns>
-        Task<bool> SaveChangesAsync();
+        Task<bool> SaveChangesAsync(bool refresh = false);
     }
 }

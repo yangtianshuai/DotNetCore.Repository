@@ -151,20 +151,20 @@ namespace DotNetCore.Repository.Cache
 
         protected abstract void UpdateCache();
        
-        public override bool SaveChanges()
+        public override bool SaveChanges(bool refresh = false)
         {
             var flag = base.SaveChanges();
-            if (flag)
+            if (flag || refresh)
             {
                 UpdateCache();
             }
             return flag;
         }
 
-        public override async Task<bool> SaveChangesAsync()
+        public override async Task<bool> SaveChangesAsync(bool refresh = false)
         {
             var flag = await base.SaveChangesAsync();
-            if (flag)
+            if (flag || refresh)
             {
                 UpdateCache();
             }
